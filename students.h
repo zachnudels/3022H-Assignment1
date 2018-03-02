@@ -3,10 +3,15 @@
 
 namespace NDLZAC001{
 
-  void addStudent();
-  readDatabase();
+  using namespace std;
+
+  void addStudent(string name,string surname,string studentNumber,string classRecord);
+  void readDatabase();
   void saveDatabase(string filename);
   void displayStudentData(string studentNumber);
   void gradeStudent(string studentNumber);
+  void printMenu();
 
 }
+
+#endif
