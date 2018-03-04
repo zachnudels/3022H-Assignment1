@@ -16,6 +16,8 @@ int main(void)
       commands.push_back(command);
       cout << "\n";
       cin >> command;
+
+      
       if(command=="1"){
         string fullName;
         string studentNumber;
@@ -36,17 +38,17 @@ int main(void)
         cin >> ifileName;
         NDLZAC001::readDatabase(ifileName);
       }
-      if(command=="4"){
-        string studentNumber;
-        cout << "\nPlease Enter the Student Number of the Required Student: \n\n";
-        cin >> studentNumber;
-        NDLZAC001::displayStudentData(studentNumber);
-      }
       if(command=="3"){
         string ofileName;
         cout << "\nPlease enter name of file to save database in\n";
         cin >> ofileName;
         NDLZAC001::saveDatabase(ofileName);
+      }
+      if(command=="4"){
+        string studentNumber;
+        cout << "\nPlease Enter the Student Number of the Required Student: \n\n";
+        cin >> studentNumber;
+        NDLZAC001::displayStudentData(studentNumber);
       }
 
 

@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
-// #include <ofstream>
+#include <sstream>
 #include "students.h"
 
 using namespace std ;
@@ -119,7 +119,24 @@ using namespace std ;
   }
 
   void NDLZAC001::gradeStudent(string studentNumber){
+    for(int i=0;i<records.size();i++){
+      NDLZAC001::StudentRecord s1 = records[i];
+      if(s1.studentNumber==studentNumber){
+        string sgrades = s1.classRecord;
+        int average;
+        istringstream iss(sgrades);
+        int igrade=0;
+        int count;
+        while(!iss.eof()){
+          iss >> igrade;
+          average=average+igrade;
+          count++;
+        }
+        average/=count;
+        cout >> "The average grade for this student is: " >> average >> '\n';
 
+      }
+    }
   }
 
 
