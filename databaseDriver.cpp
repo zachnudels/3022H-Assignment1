@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <cstdlib>
 #include "students.h"
 
 int main(void)
@@ -8,14 +9,18 @@ int main(void)
   using namespace std;
 
 
-    vector<string> commands;
     string command;
     NDLZAC001::printMenu();
     while(command!="q")
     {
-      commands.push_back(command);
-      cout << "\n";
+
       cin >> command;
+      system("clear");
+      cout << command << "\n\n";
+
+      if(command=="q"){
+        break;
+      }
 
 
       if(command=="1"){
@@ -27,7 +32,7 @@ int main(void)
         getline(cin,fullName);
         cout << "Please Enter Student Number: \n";
         cin >> studentNumber ;
-        cout << "Please Enter Grades: \n";
+        cout << "Please Enter Grades Separated by a Space: \n";
         cin.ignore();
         getline(cin,classRecord);
         NDLZAC001::addStudent(fullName, studentNumber, classRecord);
@@ -55,19 +60,10 @@ int main(void)
         cout << "\nPlease Enter the Student Number of the Required Student: \n\n";
         cin >> studentNumber;
         NDLZAC001::gradeStudent(studentNumber);
-
       }
-
-
-
-
 
       NDLZAC001::printMenu();
     }
-    // for (int i=0; i<commands.size(); i++)
-    // {
-    //   cout << commands[i] << '\n';
-    // }
 
 
 

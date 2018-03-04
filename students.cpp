@@ -3,6 +3,7 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
+#include <cstdlib>
 #include "students.h"
 
 using namespace std ;
@@ -35,6 +36,7 @@ using namespace std ;
         cout << classRecord;
         records[i].classRecord=classRecord;
         flag=true;
+        system("clear");
         cout << "Student already exists in database, overwriting old record with new data...\n";
       }
     }
@@ -43,6 +45,7 @@ using namespace std ;
       char check;
       iss >> check;
       if(!isdigit(check)){
+      system("clear");
         cout << "Error. Grades are not all integers please reenter details by adding a new student with the same name and student number\n";
         cout << "Returning to main menu\n\n";
         return;
@@ -51,6 +54,7 @@ using namespace std ;
       if(!flag) {
         records.push_back(thi);
       }
+      system("clear");
     cout << "\n\nStudent record successfully added\n";
   }
 
@@ -63,6 +67,7 @@ using namespace std ;
     int i=0;
     file.open(fileName);
     if(!file){
+      system("clear");
       cerr<< "Requested file not found!";
     }
     while(!file.eof()){
@@ -80,6 +85,7 @@ using namespace std ;
         addStudent(fullName,studentNumber,courseResults);
       }
     }
+    system("clear");
     cout << "File successfully added, returning to main menu\n";
     file.close();
   }
@@ -93,12 +99,14 @@ using namespace std ;
       while (choice != "y" || choice!= "Y" || choice!= "n" || choice!= "N"){
         cin >> choice;
         if(choice=="y" || choice=="Y"){
+          system("clear");
           cout <<"Overwriting file with database\n";
           break;
         } else if( choice =="n" || choice =="N"){
           cout << "Please choose another fileName\n";
           cin >> fileName;
-          cout << "Overwriting file with database\n";
+          system("clear");
+          cout << "Overwriting file with supplied database\n";
           break;
         }else{ cout << "Please choose y/n\n"; }
       }
@@ -110,6 +118,7 @@ using namespace std ;
       outfile << curr.name << curr.surname << '\n' << curr.studentNumber << '\n' << curr.classRecord << '\n';
     }
     outfile.close();
+
     cout << "Write successful, returning to main menu...\n";
 
   }
@@ -119,12 +128,14 @@ using namespace std ;
     for(int i=0;i<records.size();i++){
       NDLZAC001::StudentRecord s1 = records[i];
       if(s1.studentNumber==studentNumber){
+        system("clear");
         cout << "\nName: " << s1.name << '\n'
         << "Surname: " << s1.surname << '\n'
         << "Student Number: " <<s1. studentNumber << '\n'
         << "Class Record: " << s1.classRecord << '\n';
       }
-      string line="";
+      cout << "\nReturning to main menu: \n";
+      break;
     }
   }
 
@@ -140,11 +151,8 @@ using namespace std ;
         istringstream iss(sgrades);
         while(!iss.eof()){
           iss >> igrade;
-          printf("%i \n", igrade);
           average=average+igrade;
-          printf("%i \n",average);
           count++;
-          printf("%i \n",count);
         }
         average/=count;
         cout << "The average grade for this student is: ";
