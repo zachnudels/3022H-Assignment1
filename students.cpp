@@ -6,15 +6,8 @@
 #include "students.h"
 
 using namespace std ;
-  struct StudentRecord{
-    //Name (String), Surname (String), StudentNumber (String), ClassRecord (String).
-    string name;
-    string surname;
-    string studentNumber;
-    string classRecord;
-  };
 
-  vector<StudentRecord> records;
+  vector<NDLZAC001::StudentRecord> records;
 
   void NDLZAC001::printMenu(){
     cout << "\nWhat would you like to do?"
@@ -28,15 +21,27 @@ using namespace std ;
   }
 
   void NDLZAC001::addStudent(string fullName, string studentNumber, string classRecord){
-    StudentRecord s1;
+    NDLZAC001::StudentRecord thi;
     string name = fullName.substr(0,fullName.find(' '));
     string surname = fullName.substr(fullName.find(' '),fullName.length());
-    s1.name=name;
-    s1.surname=surname;
-    s1.studentNumber=studentNumber;
-    s1.classRecord=classRecord;
-    records.push_back(s1);
-
+    thi.name=name;
+    thi.surname=surname;
+    thi.studentNumber=studentNumber;
+    thi.classRecord=classRecord;
+    bool flag = false;
+    for(int i=0;i<records.size();i++){
+      NDLZAC001::StudentRecord other = records[i];
+      if(other.name==thi.name && other.surname==thi.surname && other.studentNumber == thi.studentNumber){
+        cout << classRecord;
+        records[i].classRecord=classRecord;
+        flag=true;
+        cout << "Student already exists in database, overwriting old record with new data...\n";
+      }
+    }
+      if(!flag) {
+        records.push_back(thi);
+      }
+    cout << "Student record successfully added, returning to main menu\n";
   }
 
   void NDLZAC001::readDatabase(string fileName){
@@ -65,7 +70,7 @@ using namespace std ;
         addStudent(fullName,studentNumber,courseResults);
       }
     }
-    cout << "File successfully added\n";
+    cout << "File successfully added, returning to main menu\n";
     file.close();
   }
 
@@ -91,33 +96,26 @@ using namespace std ;
     }
     outfile.open(fileName);
     for(int i=0; i<records.size();i++){
-      StudentRecord curr = records[i];
+      NDLZAC001::StudentRecord curr = records[i];
       outfile << curr.name << curr.surname << '\n' << curr.studentNumber << '\n' << curr.classRecord << '\n';
     }
     outfile.close();
+    cout << "Write successful, returning to main menu...\n";
 
   }
 
   void NDLZAC001::displayStudentData(string studentNumber){
 
     for(int i=0;i<records.size();i++){
-      StudentRecord s1 = records[i];
+      NDLZAC001::StudentRecord s1 = records[i];
       if(s1.studentNumber==studentNumber){
         cout << "\nName: " << s1.name << '\n'
         << "Surname: " << s1.surname << '\n'
         << "Student Number: " <<s1. studentNumber << '\n'
         << "Class Record: " << s1.classRecord << '\n';
       }
-      // string line="";
-      // cout << "\nEnter 'm' to return to main menu\n";
-      // while(true){
-      //   cin>>line;
-      //   if(line=="m"){
-      //     return;
-      //   }
-      // }
+      string line="";
     }
-
   }
 
   void NDLZAC001::gradeStudent(string studentNumber){

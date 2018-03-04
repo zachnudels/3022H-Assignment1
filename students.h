@@ -5,6 +5,13 @@ namespace NDLZAC001{
 
   using namespace std;
 
+  struct StudentRecord{
+    string name;
+    string surname;
+    string studentNumber;
+    string classRecord;
+  };
+
   void addStudent(string fullName, string studentNumber, string classRecord);
   void readDatabase(string fileName);
   void saveDatabase(string fileName);
