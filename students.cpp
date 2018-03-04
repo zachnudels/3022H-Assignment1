@@ -38,10 +38,20 @@ using namespace std ;
         cout << "Student already exists in database, overwriting old record with new data...\n";
       }
     }
+    istringstream iss(classRecord);
+    while(!iss.eof()){
+      char check;
+      iss >> check;
+      if(!isdigit(check)){
+        cout << "Error. Grades are not all integers please reenter details by adding a new student with the same name and student number\n";
+        cout << "Returning to main menu\n\n";
+        return;
+      }
+    }
       if(!flag) {
         records.push_back(thi);
       }
-    cout << "Student record successfully added, returning to main menu\n";
+    cout << "\n\nStudent record successfully added\n";
   }
 
   void NDLZAC001::readDatabase(string fileName){
@@ -123,22 +133,23 @@ using namespace std ;
       NDLZAC001::StudentRecord s1 = records[i];
       if(s1.studentNumber==studentNumber){
         string sgrades = s1.classRecord;
-        int average;
-        istringstream iss(sgrades);
+        int average=0;
+
         int igrade=0;
-        int count;
+        int count=0;
+        istringstream iss(sgrades);
         while(!iss.eof()){
           iss >> igrade;
+          printf("%i \n", igrade);
           average=average+igrade;
+          printf("%i \n",average);
           count++;
+          printf("%i \n",count);
         }
         average/=count;
-        cout >> "The average grade for this student is: " >> average >> '\n';
+        cout << "The average grade for this student is: ";
+        printf("%i",average);
 
       }
     }
   }
-
-
-
- /*std*/

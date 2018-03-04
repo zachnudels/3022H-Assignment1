@@ -17,7 +17,7 @@ int main(void)
       cout << "\n";
       cin >> command;
 
-      
+
       if(command=="1"){
         string fullName;
         string studentNumber;
@@ -49,6 +49,13 @@ int main(void)
         cout << "\nPlease Enter the Student Number of the Required Student: \n\n";
         cin >> studentNumber;
         NDLZAC001::displayStudentData(studentNumber);
+      }
+      if(command=="5"){
+        string studentNumber;
+        cout << "\nPlease Enter the Student Number of the Required Student: \n\n";
+        cin >> studentNumber;
+        NDLZAC001::gradeStudent(studentNumber);
+
       }
 
 
