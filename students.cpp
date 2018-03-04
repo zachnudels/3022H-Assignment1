@@ -24,9 +24,17 @@ using namespace std ;
   void NDLZAC001::addStudent(string fullName, string studentNumber, string classRecord){
     NDLZAC001::StudentRecord thi;
     // Split full name into name and Surname
+    string name;
+    string surname;
 
-    string name = fullName.substr(0,fullName.find(' '));
-    string surname = fullName.substr(fullName.find(' '),fullName.length());
+//If name has no space, an error will be thrown
+    try{
+      name = fullName.substr(0,fullName.find(' '));
+      surname = fullName.substr(fullName.find(' '),fullName.length());
+    }catch(exception& e){
+      cout << "\n\nError! Please enter the student's full name upon trying again. \n";
+      return;
+    }
 
     thi.name=name;
     thi.surname=surname;
@@ -54,19 +62,8 @@ using namespace std ;
 
     // Check every grade entry to ensure only ints are added
 
-
-    //If length is 1 character, iss will not work so have to check first character first
-    if (classRecord.length()<2){
-      if(!isdigit(classRecord[1])){
-        system("clear");
-          cout << "Error. Grades are not all integers please reenter details by adding a new student with the same name and student number\n";
-          cout << "Returning to main menu\n\n";
-          return;
-      }
-    }
-
     istringstream iss(classRecord);
-    
+
     while(!iss.eof()){
       char check;
       iss >> check;
