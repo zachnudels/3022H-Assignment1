@@ -53,7 +53,20 @@ using namespace std ;
     }
 
     // Check every grade entry to ensure only ints are added
+
+
+    //If length is 1 character, iss will not work so have to check first character first
+    if (classRecord.length()<2){
+      if(!isdigit(classRecord[1])){
+        system("clear");
+          cout << "Error. Grades are not all integers please reenter details by adding a new student with the same name and student number\n";
+          cout << "Returning to main menu\n\n";
+          return;
+      }
+    }
+
     istringstream iss(classRecord);
+    
     while(!iss.eof()){
       char check;
       iss >> check;
@@ -178,7 +191,7 @@ using namespace std ;
           average+=igrade;
           count++;
         }
-        
+
         average/=count;
         cout << "The average grade for this student is: ";
         printf("%i",average);

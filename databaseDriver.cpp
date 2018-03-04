@@ -14,6 +14,7 @@ int main(void)
     while(command!="q")
     {
 
+      cout << "\n";
       cin >> command;
       system("clear");
       cout << command << "\n\n";
