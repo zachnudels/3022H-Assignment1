@@ -31,16 +31,22 @@ int main(void)
         NDLZAC001::addStudent(fullName, studentNumber, classRecord);
       }
       if(command=="2"){
-        string fileName;
-        cout << "\nPlease enter file name\n";
-        cin >> fileName;
-        NDLZAC001::readDatabase(fileName);
+        string ifileName;
+        cout << "\nPlease enter name of file to be read\n";
+        cin >> ifileName;
+        NDLZAC001::readDatabase(ifileName);
       }
       if(command=="4"){
         string studentNumber;
         cout << "\nPlease Enter the Student Number of the Required Student: \n\n";
         cin >> studentNumber;
         NDLZAC001::displayStudentData(studentNumber);
+      }
+      if(command=="3"){
+        string ofileName;
+        cout << "\nPlease enter name of file to save database in\n";
+        cin >> ofileName;
+        NDLZAC001::saveDatabase(ofileName);
       }
 
 

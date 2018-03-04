@@ -7,7 +7,7 @@ namespace NDLZAC001{
 
   void addStudent(string fullName, string studentNumber, string classRecord);
   void readDatabase(string fileName);
-  void saveDatabase();
+  void saveDatabase(string fileName);
   void displayStudentData(string studentNumber);
   void gradeStudent(string studentNumber);
   void printMenu();

@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
-#include <ofstream>
+// #include <ofstream>
 #include "students.h"
 
 using namespace std ;
@@ -65,11 +65,36 @@ using namespace std ;
         addStudent(fullName,studentNumber,courseResults);
       }
     }
+    cout << "File successfully added\n";
     file.close();
   }
 
-  void NDLZAC001::saveDatabase(){
-    ofstream
+  void NDLZAC001::saveDatabase(string fileName){
+    ofstream outfile;
+    ifstream efile(fileName);
+    if(efile){
+      cout << "This file already exists, would you like to overwrite?\ny/n\n";
+      string choice;
+      while (choice != "y" || choice!= "Y" || choice!= "n" || choice!= "N"){
+        cin >> choice;
+        if(choice=="y" || choice=="Y"){
+          cout <<"Overwriting file with database\n";
+          break;
+        } else if( choice =="n" || choice =="N"){
+          cout << "Please choose another fileName\n";
+          cin >> fileName;
+          cout << "Overwriting file with database\n";
+          break;
+        }else{ cout << "Please choose y/n\n"; }
+      }
+
+    }
+    outfile.open(fileName);
+    for(int i=0; i<records.size();i++){
+      StudentRecord curr = records[i];
+      outfile << curr.name << curr.surname << '\n' << curr.studentNumber << '\n' << curr.classRecord << '\n';
+    }
+    outfile.close();
 
   }
 
@@ -83,14 +108,14 @@ using namespace std ;
         << "Student Number: " <<s1. studentNumber << '\n'
         << "Class Record: " << s1.classRecord << '\n';
       }
-      string line="";
-      cout << "\nEnter 'm' to return to main menu\n";
-      while(true){
-        cin>>line;
-        if(line=="m"){
-          return;
-        }
-      }
+      // string line="";
+      // cout << "\nEnter 'm' to return to main menu\n";
+      // while(true){
+      //   cin>>line;
+      //   if(line=="m"){
+      //     return;
+      //   }
+      // }
     }
 
   }
