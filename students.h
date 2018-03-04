@@ -5,9 +5,9 @@ namespace NDLZAC001{
 
   using namespace std;
 
-  void addStudent(string name,string surname,string studentNumber,string classRecord);
-  void readDatabase();
-  void saveDatabase(string filename);
+  void addStudent(string fullName, string studentNumber, string classRecord);
+  void readDatabase(string fileName);
+  void saveDatabase();
   void displayStudentData(string studentNumber);
   void gradeStudent(string studentNumber);
   void printMenu();
