@@ -12,7 +12,7 @@ namespace NDLZAC001{
     string classRecord;
   };
 
-  void addStudent(string fullName, string studentNumber, string classRecord);
+  bool addStudent(string fullName, string studentNumber, string classRecord);
   void readDatabase(string fileName);
   void saveDatabase(string fileName);
   void displayStudentData(string studentNumber);

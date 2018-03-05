@@ -21,7 +21,7 @@ using namespace std ;
     << "q: Quit" << '\n';
   }
 
-  void NDLZAC001::addStudent(string fullName, string studentNumber, string classRecord){
+  bool NDLZAC001::addStudent(string fullName, string studentNumber, string classRecord){
     NDLZAC001::StudentRecord thi;
     // Split full name into name and Surname
     string name;
@@ -33,7 +33,7 @@ using namespace std ;
       surname = fullName.substr(fullName.find(' '),fullName.length());
     }catch(exception& e){
       cout << "\n\nError! Please enter the student's full name upon trying again. \n";
-      return;
+      return false;
     }
 
     thi.name=name;
@@ -73,7 +73,7 @@ using namespace std ;
       system("clear");
         cout << "Error. Grades are not all integers please reenter details by adding a new student with the same name and student number\n";
         cout << "Returning to main menu\n\n";
-        return;
+        return false;
       }
     }
       if(!noWrite) {
@@ -81,6 +81,7 @@ using namespace std ;
       }
       system("clear");
     cout << "\n\nStudent record successfully added\n";
+    return true;
   }
 
   void NDLZAC001::readDatabase(string fileName){
@@ -89,6 +90,8 @@ using namespace std ;
     string studentNumber;
     string courseResults;
     string line;
+    bool success;
+    bool allSuccess = true;
     int i=0;
 
 
@@ -111,11 +114,18 @@ using namespace std ;
       else if(i==3){
         courseResults=line;
         i=0; //restart iterator
-        addStudent(fullName,studentNumber,courseResults);
+        success = addStudent(fullName,studentNumber,courseResults);
+        if(!success){
+          allSuccess=false;
+        }
       }
     }
     system("clear");
-    cout << "File successfully added, returning to main menu\n";
+    if(!allSuccess){
+      cout << "\n!Some or more records were not formatted correctly! Please recheck formatting and try again!\n";
+    } else{
+      cout << "\nFile successfully added, returning to main menu\n";
+    }
     file.close();
   }
 
